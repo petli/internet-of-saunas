@@ -45,8 +45,8 @@ I've used this colour-coding of cables to hook up the nRF24L01 radios:
 |--------|--------- |---------------|----------------
 | Red    | 3.3V     |               | 
 | Black  | Ground   |               |
-| Orange | CSN      | D11           | GPIO 8  / CEO
-| Brown  | CE       | D8            | GPIO 22 / GP3
+| Orange | CSN      | D12           | GPIO 8  / CEO
+| Brown  | CE       | D11           | GPIO 22 / GP3
 | Green  | MOSI     |               |
 | Yellow | SCLK     |               |
 | Purple | INT      | Not used      |
@@ -59,7 +59,13 @@ Arduino Micro with a DHT22 sensor.
 
 | Pin | Function
 |-----|--------------
-| D8  | RF24 CE
-| D11 | RF24 CSN
+| D2  | LCD RS
+| D3  | LCD E
+| D4  | LCD D4
+| D5  | LCD D5
+| D6  | LCD D6
+| D7  | LCD D7
+| D9  | DHT22 data
+| D11 | RF24 CE
+| D12 | RF24 CSN
 | D13 | Status led
-| D2  | DHT22 data
