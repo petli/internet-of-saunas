@@ -10,9 +10,9 @@
 #define LCD_D5          5
 #define LCD_D6          6
 #define LCD_D7          7
-#define DHT_PIN         9
-#define RF_CE_PIN      11
-#define RF_CSN_PIN     12
+#define DHT_PIN         8
+#define RF_CE_PIN       9
+#define RF_CSN_PIN     10
 
 static byte gateway_address[] = "IoSGW";
 
@@ -41,7 +41,7 @@ void setup()
   delay(5000);
   Serial.println(F("Sauna sensor starting (build " __DATE__ " " __TIME__ ")"));
 
-  pinMode(LED_BUILTIN, OUTPUT);
+  // pinMode(LED_BUILTIN, OUTPUT);
 
   dht.begin();
 
@@ -107,21 +107,21 @@ static void display(const char* text1, const char* text2)
 
 static void blink()
 {
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(20);
-  digitalWrite(LED_BUILTIN, LOW);
+//  digitalWrite(LED_BUILTIN, HIGH);
+//  delay(20);
+//  digitalWrite(LED_BUILTIN, LOW);
 }
 
 static void blink_error()
 {
-  blink();
-  delay(200);
-  blink();
-  delay(200);
-  blink();
-  delay(200);
-  blink();
-  delay(200);
-  blink();
-  delay(200);
+//  blink();
+//  delay(200);
+//  blink();
+//  delay(200);
+//  blink();
+//  delay(200);
+//  blink();
+//  delay(200);
+//  blink();
+//  delay(200);
 }

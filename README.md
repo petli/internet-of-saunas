@@ -39,23 +39,31 @@ Run the code with the virtualenv python:
 
 ## nRF24L01 connection
 
+Pinout on the particular chip + antenna component I've got.  Seen from
+component side with the antenna facing up, i.e. this is the pinout for
+the connector on the circuit board:
+
+| VCC | CSN | MOSI | INT  |
+| GND | CE  | SCLK | MISO |
+
+
 I've used this colour-coding of cables to hook up the nRF24L01 radios:
 
-| Colour | Function | Arduino Micro | Raspberry Pi 
-|--------|--------- |---------------|----------------
-| Red    | 3.3V     |               | 
-| Black  | Ground   |               |
-| Orange | CSN      | D12           | GPIO 8  / CEO
-| Brown  | CE       | D11           | GPIO 22 / GP3
-| Green  | MOSI     |               |
-| Yellow | SCLK     |               |
-| Purple | INT      | Not used      |
-| Blue   | MISO     |               |
+| Colour | Function
+|--------|---------
+| Red    | 3.3V
+| Black  | Ground
+| Orange | CSN
+| Brown  | CE
+| Green  | MOSI
+| Yellow | SCLK
+| Purple | INT
+| Blue   | MISO
 
 
 ## Sensor
 
-Arduino Micro with a DHT22 sensor.
+Arduino Uno:
 
 | Pin | Function
 |-----|--------------
@@ -65,7 +73,41 @@ Arduino Micro with a DHT22 sensor.
 | D5  | LCD D5
 | D6  | LCD D6
 | D7  | LCD D7
-| D9  | DHT22 data
-| D11 | RF24 CE
-| D12 | RF24 CSN
-| D13 | Status led
+| D8  | DHT22 data
+| D9  | RF24 CE
+| D10 | RF24 CSN
+| D11 | RF24 MOSI
+| D12 | RF24 MISO
+| D13 | RF24 SCLK
+
+
+LCD display pinout:
+
+| Pin | Name | Connection
+|-----|------|-----------
+|   1 | VSS  | GND
+|   2 | VDD  | 5V
+|   3 | V0   | Middle pin of a potentiometer between 5V and GND
+|   4 | RS   | D2
+|   5 | RW   | GND
+|   6 | E    | D3
+|   7 | D0   | -
+|   8 | D1   | -
+|   9 | D2   | -
+|  10 | D3   | -
+|  11 | D4   | D4
+|  12 | D5   | D5
+|  13 | D6   | D6
+|  14 | D7   | D7
+|  15 | A/L+ | 5V via 220 ohm resistor
+|  16 | K/L- | GND
+
+
+## Gateway
+
+Raspberry Pi model B+ (?).
+
+Sensor is wired up to standard SPI pins, plus:
+
+| CSN | GPIO 8 (CE0) |
+| CE  | GIIO 22 (GP3) |
