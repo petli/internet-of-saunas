@@ -10,6 +10,9 @@ from RF24 import *
 GATEWAY_ADDRESS = b'IoSGW'
 CE_PIN = 22
 
+RESTART_MINUTES = 5
+
+
 class SaunaGateway:
     def __init__(self):
         self._cloudwatch = boto3.client('cloudwatch')
@@ -38,6 +41,7 @@ class SaunaGateway:
 
 
     def run(self):
+        self._windows_without_messages = 0
         self._window_end = time.time()
 
         while True:
@@ -84,7 +88,14 @@ class SaunaGateway:
         sys.stdout.flush()
 
         if not self._temp_samples:
+            self._windows_without_messages += 1
+
+            if self._windows_without_messages >= RESTART_MINUTES:
+                sys.exit('Exiting... (and hopefully being restarted by systemd)')
+
             return
+
+        self._windows_without_messages = 0
 
         try:
             self._cloudwatch.put_metric_data(
@@ -120,7 +131,7 @@ class SaunaGateway:
 if __name__ == '__main__':
     gw = SaunaGateway()
 
-    gw._radio.printDetails()
+    # gw._radio.printDetails()
     print('Sauna gateway started')
     print()
     sys.stdout.flush()

@@ -1,0 +1,13 @@
+[Unit]
+Description=Internet-of-Saunas gateway
+After=network.target
+
+[Service]
+ExecStart=/opt/sauna-gateway/bin/python /opt/sauna-gateway/sauna-gateway.py
+Restart=on-failure
+User=sauna
+StandardOutput=append:/var/log/sauna-gateway.log
+
+[Install]
+WantedBy=multi-user.target
+Alias=sauna-gateway.service
