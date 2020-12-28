@@ -22,7 +22,7 @@ class SaunaGateway:
         self._temp_samples = []
         self._humidity_samples = []
         self._last_message_id = None
-
+        self._can_blink_led = True
 
     def open_radio(self):
         # Use /dev/spidev0.0
@@ -62,11 +62,12 @@ class SaunaGateway:
         while time.time() < self._window_end:
             if self._radio.available():
                 self._handle_message(self._radio.read(3))
+                self._blink_led()
 
             if sys.stdout.isatty():
                 self._update_output()
 
-            time.sleep(1)
+            time.sleep(0.5)
 
 
     def _handle_message(self, msg):
@@ -126,6 +127,24 @@ class SaunaGateway:
                                                                  len(self._temp_samples)))
         else:
             sys.stdout.write(' {} ---C ---% ---#\r'.format(self._window_time))
+
+
+    def _blink_led(self):
+        if not self._can_blink_led:
+            return
+
+        try:
+            with open('/sys/class/leds/led0/brightness', 'wt') as f:
+                f.write('1')
+
+            time.sleep(0.1)
+
+            with open('/sys/class/leds/led0/brightness', 'wt') as f:
+                f.write('0')
+
+        except IOError as e:
+            sys.stdout.write('\nError blinking LED: {}\n'.format(e))
+            self._can_blink_led = False
 
 
 if __name__ == '__main__':

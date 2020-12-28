@@ -1,6 +1,7 @@
 [Unit]
 Description=Internet-of-Saunas gateway
 After=network.target
+After=rpi-activity-led-gpio.service
 
 [Service]
 ExecStart=/opt/sauna-gateway/bin/python /opt/sauna-gateway/sauna-gateway.py
