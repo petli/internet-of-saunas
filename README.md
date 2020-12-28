@@ -110,4 +110,4 @@ Raspberry Pi model B+ (?).
 Sensor is wired up to standard SPI pins, plus:
 
 | CSN | GPIO 8 (CE0) |
-| CE  | GIIO 22 (GP3) |
+| CE  | GPIO 25 (GP5) |

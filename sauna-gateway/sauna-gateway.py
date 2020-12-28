@@ -8,7 +8,7 @@ import boto3
 from RF24 import *
 
 GATEWAY_ADDRESS = b'IoSGW'
-CE_PIN = 22
+CE_PIN = 25
 
 RESTART_MINUTES = 5
 
@@ -131,7 +131,7 @@ class SaunaGateway:
 if __name__ == '__main__':
     gw = SaunaGateway()
 
-    # gw._radio.printDetails()
+    gw._radio.printDetails()
     print('Sauna gateway started')
     print()
     sys.stdout.flush()
