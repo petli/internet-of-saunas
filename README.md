@@ -15,7 +15,11 @@ alarms when the sauna has reached the desired temperature.
 
 # Gateway setup
 
-Clone https://github.com/nRF24/RF24 on a Raspi and build it:
+Install required Raspbian packages:
+
+    apt-get install virtualenv libboost-python-dev
+
+Clone https://github.com/nRF24/RF24 on a RaspberryPi and build it:
 
     ./configure --driver=SPIDEV
     make
@@ -29,6 +33,10 @@ Install the RF24 python module in it from the cloned project above:
 
     cd RF24/pyRF24
     ~/sauna-gateway/bin/python setup.py install
+
+Install the AWS Python SDK:
+
+    ~/sauna-gateway/bin/pip install boto3
 
 Run the code with the virtualenv python:
 
