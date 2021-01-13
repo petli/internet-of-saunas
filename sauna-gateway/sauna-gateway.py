@@ -76,6 +76,9 @@ class SaunaGateway:
         temp = msg[1]
         humidity = msg[2]
 
+        if temp > 127:
+            temp -= 256
+
         if msg_id == self._last_message_id:
             return
 
