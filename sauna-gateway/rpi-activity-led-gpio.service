@@ -3,9 +3,9 @@ Description=Change RPi activity led to gpio mode
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo gpio > /sys/class/leds/led0/trigger'
-ExecStart=/bin/sh -c 'chown root.gpio /sys/class/leds/led0/brightness'
-ExecStart=/bin/sh -c 'chmod g+rw /sys/class/leds/led0/brightness'
+ExecStart=/bin/sh -c 'echo none > /sys/class/leds/ACT/trigger'
+ExecStart=/bin/sh -c 'chown root.gpio /sys/class/leds/ACT/brightness'
+ExecStart=/bin/sh -c 'chmod g+rw /sys/class/leds/ACT/brightness'
 User=root
 
 [Install]

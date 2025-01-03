@@ -142,7 +142,7 @@ class SaunaGateway:
 
     def _set_led(self, value):
         try:
-            with open('/sys/class/leds/led0/brightness', 'wt') as f:
+            with open('/sys/class/leds/ACT/brightness', 'wt') as f:
                 f.write(f'{value:d}')
 
             return True
